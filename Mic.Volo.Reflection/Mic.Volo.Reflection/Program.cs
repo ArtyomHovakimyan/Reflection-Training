@@ -10,6 +10,10 @@ namespace Mic.Volo.Reflection
     {
         static void Main(string[] args)
         {
+            SportsCar car = new SportsCar();
+            Type t = car.GetType();
+            Type t1 = typeof(SportsCar);
+            Type t2 = Type.GetType("");
         }
     }
 }
