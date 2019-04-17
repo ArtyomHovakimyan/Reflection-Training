@@ -18,11 +18,11 @@ namespace Mic.Volo.Reflection
         }
         static void ListMethods(Type t)
         {
-            MethodInfo[] mi = t.GetMethods();
-            foreach (MethodInfo m in mi)
-            {
-                Console.WriteLine("->{0}",m.Name);
-            }
+            Console.WriteLine("****Methods*****");
+            var methodNames = from n in t.GetMethods()
+                              select n.Name;
+            foreach(var name in methodNames)
+                Console.WriteLine("->{0}",name);
             Console.WriteLine();
         }
     }
