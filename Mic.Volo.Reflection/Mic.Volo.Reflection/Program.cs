@@ -11,19 +11,32 @@ namespace Mic.Volo.Reflection
     {
         static void Main(string[] args)
         {
-            SportsCar car = new SportsCar();
-            Type t = car.GetType();
-            Type t1 = typeof(SportsCar);
-            Type t2 = Type.GetType("");
-        }
-        static void ListMethods(Type t)
-        {
-            Console.WriteLine("****Methods*****");
-            var methodNames = from n in t.GetMethods()
-                              select n.Name;
-            foreach(var name in methodNames)
-                Console.WriteLine("->{0}",name);
-            Console.WriteLine();
+            Console.WriteLine("****Welcome to MyTypeViewer****");
+            string typeName = "";
+            do
+            {
+                Console.WriteLine("\nEnter a type name to evaluate");
+                Console.WriteLine("or enteer Q to quit: ");
+                typeName = Console.ReadLine();
+                if(typeName.ToUpper()=="Q")
+                {
+                    break;
+                }
+                try
+                {
+                    Type t = Type.GetType(typeName);
+                    Console.WriteLine(" ");
+                    MyTypeRel.ListVariousStats(t);
+                    MyTypeRel.ListFields(t);
+                    MyTypeRel.ListProps(t);
+                    MyTypeRel.ListMethods(t);
+                    MyTypeRel.ListInterfaces(t);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Sorry, can`t find type");
+                }
+            } while (true);
         }
     }
 }
